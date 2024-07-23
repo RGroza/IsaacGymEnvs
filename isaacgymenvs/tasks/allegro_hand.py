@@ -282,7 +282,7 @@ class AllegroHand(VecTask):
 
         shadow_hand_start_pose = gymapi.Transform()
         shadow_hand_start_pose.p = gymapi.Vec3(*get_axis_params(0.5, self.up_axis_idx))
-        shadow_hand_start_pose.r = gymapi.Quat.from_axis_angle(gymapi.Vec3(0, 1, 0), np.pi) * gymapi.Quat.from_axis_angle(gymapi.Vec3(1, 0, 0), 0.47 * np.pi) * gymapi.Quat.from_axis_angle(gymapi.Vec3(0, 0, 1), 0.25 * np.pi)
+        shadow_hand_start_pose.r = gymapi.Quat.from_axis_angle(gymapi.Vec3(1, 0, 0), 5 * np.pi / 180)
 
         object_start_pose = gymapi.Transform()
         object_start_pose.p = gymapi.Vec3()

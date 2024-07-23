@@ -1,0 +1,617 @@
+<?xml version="1.0" ?>
+<robot name="allegro_hand" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <link name="world"/>
+
+  <joint name="base_to_world" type="fixed">
+    <origin rpy="-1.5708 0.785398 3.1416" xyz="0 0 0"/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+
+  <link name="base_link"/>
+
+  <joint name="palm_to_base" type="fixed">
+    <origin rpy="0 -1.5708 0.785398" xyz="-0.008219 -0.02063 0.05786"/>
+    <parent link="base_link"/>
+    <child link="palm_link"/>
+  </joint>
+
+<!-- Allegro links -->
+  <link name="palm_link">
+    <inertial>
+      <mass value="0.4154"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1e-4" ixy="0" ixz="0" iyy="1e-4" iyz="0" izz="1e-4"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/palm_link.stl"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0 "/>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/palm_link.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="index_link_0">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_base.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.005"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_base.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="index_link_1">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_proximal.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.005"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_proximal.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="index_link_2">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_medial.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_medial.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="index_link_3">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/fingertips/link_finger.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.11"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.570795 0 1.570795" />
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/fingertips/link_finger.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="index_tip">
+    <inertial>
+      <mass value="0.04"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/fingertips/tip_coarse.stl"/>
+      </geometry>
+      <material name="White">
+        <color rgba="0.9 0.9 0.9 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.014"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="middle_link_0">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_base.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_base.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="middle_link_1">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_proximal.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_proximal.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="middle_link_2">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_medial.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_medial.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="middle_link_3">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/fingertips/link_finger.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.570795 0 1.570795" />
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/fingertips/link_finger.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="middle_tip">
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/fingertips/tip_coarse.stl"/>
+      </geometry>
+      <material name="White">
+        <color rgba="0.9 0.9 0.9 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.014"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="ring_link_0">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_base.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_base.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="ring_link_1">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_proximal.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_proximal.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="ring_link_2">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_medial.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/primary_medial.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="ring_link_3">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/fingertips/link_finger.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.570795 0 1.570795" />
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/fingertips/link_finger.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="ring_tip">
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/fingertips/tip_coarse.stl"/>
+      </geometry>
+      <material name="White">
+        <color rgba="0.9 0.9 0.9 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.014"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="thumb_link_0">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/thumb_base.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/thumb_base.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="thumb_link_1">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/thumb_proximal.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/thumb_proximal.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="thumb_link_2">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/thumb_medial.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/allegro/thumb_medial.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="thumb_link_3">
+    <collision>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/fingertips/link_thumb.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.570795 0 1.570795" />
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/fingertips/link_thumb.stl"/>
+      </geometry>
+      <material name="Black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="thumb_tip">
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="5.1458e-5" ixy="0" ixz="0" iyy="5.1458e-5" iyz="0" izz="6.125e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="kuka_allegro_description/meshes/fingertips/tip_coarse.stl"/>
+      </geometry>
+      <material name="White">
+        <color rgba="0.9 0.9 0.9 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.014"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+<!-- Allegro joints -->
+  <joint name="index_joint_0" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.558488888889" upper="0.558488888889" velocity="6.283"/>
+    <origin rpy="3.1415 -1.57075 -0.0872638888889" xyz="0.0514302 -0.03632 -0.0113"/>
+    <parent link="palm_link"/>
+    <child link="index_link_0"/>
+    <dynamics damping="0.025" friction="0.035"/>
+  </joint>
+
+  <joint name="index_joint_1" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.279244444444" upper="1.727825" velocity="6.283"/>
+    <origin rpy="3.1415 -1.57075 1.57075" xyz="0.0 0.0 0.0"/>
+    <parent link="index_link_0"/>
+    <child link="index_link_1"/>
+    <dynamics damping="0.025" friction="0.035"/>
+  </joint>
+
+  <joint name="index_joint_2" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.279244444444" upper="1.727825" velocity="6.283"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.054 0.0 0.0"/>
+    <parent link="index_link_1"/>
+    <child link="index_link_2"/>
+    <dynamics damping="0.025" friction="0.035"/>
+  </joint>
+
+  <joint name="index_joint_3" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.279244444444" upper="1.727825" velocity="6.283"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0384 0.0 0.0"/>
+    <parent link="index_link_2"/>
+    <child link="index_link_3"/>
+    <dynamics damping="0.025" friction="0.035"/>
+  </joint>
+
+  <joint name="index_tip_joint" type="fixed">
+    <origin rpy="1.57079 1.57079 1.57079" xyz="0.0157 0 0"/>
+    <parent link="index_link_3"/>
+    <child link="index_tip"/>
+  </joint>
+
+  <joint name="middle_joint_0" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.558488888889" upper="0.558488888889" velocity="6.283"/>
+    <origin rpy="3.1415 -1.57075 0" xyz="0.0537375 0.0087771 -0.0113"/>
+    <parent link="palm_link"/>
+    <child link="middle_link_0"/>
+    <dynamics friction="0.035"/>
+  </joint>
+
+  <joint name="middle_joint_1" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.279244444444" upper="1.727825" velocity="6.283"/>
+    <origin rpy="3.1415 -1.57075 1.57075" xyz="0.0 0.0 0.0"/>
+    <parent link="middle_link_0"/>
+    <child link="middle_link_1"/>
+    <dynamics friction="0.035"/>
+  </joint>
+  <joint name="middle_joint_2" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.279244444444" upper="1.727825" velocity="6.283"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.054 0.0 0.0"/>
+    <parent link="middle_link_1"/>
+    <child link="middle_link_2"/>
+    <dynamics friction="0.035"/>
+  </joint>
+
+  <joint name="middle_joint_3" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.279244444444" upper="1.727825" velocity="6.283"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0384 0.0 0.0"/>
+    <parent link="middle_link_2"/>
+    <child link="middle_link_3"/>
+    <dynamics friction="0.035"/>
+  </joint>
+
+  <joint name="middle_tip_joint" type="fixed">
+    <origin rpy="1.57079 1.57079 1.57079" xyz="0.0157 0 0"/>
+    <parent link="middle_link_3"/>
+    <child link="middle_tip"/>
+  </joint>
+
+  <joint name="ring_joint_0" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.558488888889" upper="0.558488888889" velocity="6.283"/>
+    <origin rpy="3.1415 -1.57075 0.0872638888889" xyz="0.0514302 0.0538749 -0.0113"/>
+    <parent link="palm_link"/>
+    <child link="ring_link_0"/>
+    <dynamics friction="0.035"/>
+  </joint>
+
+  <joint name="ring_joint_1" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.279244444444" upper="1.727825" velocity="6.283"/>
+    <origin rpy="3.1415 -1.57075 1.57075" xyz="0.0 0.0 0.0"/>
+    <parent link="ring_link_0"/>
+    <child link="ring_link_1"/>
+    <dynamics friction="0.035"/>
+  </joint>
+
+  <joint name="ring_joint_2" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.279244444444" upper="1.727825" velocity="6.283"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.054 0.0 0.0"/>
+    <parent link="ring_link_1"/>
+    <child link="ring_link_2"/>
+    <dynamics friction="0.035"/>
+  </joint>
+
+  <joint name="ring_joint_3" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.279244444444" upper="1.727825" velocity="6.283"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0384 0.0 0.0"/>
+    <parent link="ring_link_2"/>
+    <child link="ring_link_3"/>
+    <dynamics friction="0.035"/>
+  </joint>
+
+  <joint name="ring_tip_joint" type="fixed">
+    <origin rpy="1.57079 1.57079 1.57079" xyz="0.0157 0 0"/>
+    <parent link="ring_link_3"/>
+    <child link="ring_tip"/>
+  </joint>
+
+  <joint name="thumb_joint_0" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="0.279244444444" upper="1.57075" velocity="6.283"/>
+    <origin rpy="-1.57075 -1.57075 1.48348611111" xyz="-0.0367482 -0.0081281 -0.0295"/>
+    <parent link="palm_link"/>
+    <child link="thumb_link_0"/>
+    <dynamics friction="0.035"/>
+  </joint>
+
+  <joint name="thumb_joint_1" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.331602777778" upper="1.15188333333" velocity="6.283"/>
+    <origin rpy="1.57075 0 0" xyz="0.005 0.0 0.0"/>
+    <parent link="thumb_link_0"/>
+    <child link="thumb_link_1"/>
+    <dynamics friction="0.035"/>
+  </joint>
+
+  <joint name="thumb_joint_2" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.279244444444" upper="1.727825" velocity="6.283"/>
+    <origin rpy="3.1415 -1.57075 0.0" xyz="0 0 0.0554"/>
+    <parent link="thumb_link_1"/>
+    <child link="thumb_link_2"/>
+    <dynamics friction="0.035"/>
+  </joint>
+
+  <joint name="thumb_joint_3" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="0.35" lower="-0.279244444444" upper="1.76273055556" velocity="6.283"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0514 0.0 0.0"/>
+    <parent link="thumb_link_2"/>
+    <child link="thumb_link_3"/>
+    <dynamics friction="0.035"/>
+  </joint>
+
+  <joint name="thumb_tip_joint" type="fixed">
+    <origin rpy="1.57079 1.57079 1.57079" xyz="0.0313 0 0"/>
+    <parent link="thumb_link_3"/>
+    <child link="thumb_tip"/>
+  </joint>
+
+</robot>
